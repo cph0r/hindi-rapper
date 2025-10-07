@@ -33,7 +33,17 @@
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🌐 Try it Online (Hugging Face Spaces)
+
+Want to try it without installation? Deploy to Hugging Face Spaces for free!
+
+👉 **[Deploy to Hugging Face Guide](HUGGINGFACE_DEPLOYMENT.md)**
+
+Or try the live demo: *(coming soon)*
+
+### 💻 Local Installation
+
+#### Prerequisites
 
 - Python 3.10+
 - 8GB+ GPU VRAM (recommended) or CPU (slower)

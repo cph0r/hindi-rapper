@@ -10,40 +10,63 @@ from typing import List, Union
 import os
 import json
 import sys
+import warnings
 
 # separator=Separator(phone=' ', word=' _ ', syllable='|'),
 separator = Separator(word=" _ ", syllable="|", phone=" ")
 
-phonemizer_zh = EspeakBackend(
-    "cmn", preserve_punctuation=False, with_stress=False, language_switch="remove-flags"
-)
-# phonemizer_zh.separator = separator
+# Initialize language backends with graceful fallback
+phonemizer_zh = None
+phonemizer_en = None
+phonemizer_ko = None
+phonemizer_fr = None
+phonemizer_de = None
 
-phonemizer_en = EspeakBackend(
-    "en-us",
-    preserve_punctuation=False,
-    with_stress=False,
-    language_switch="remove-flags",
-)
-# phonemizer_en.separator = separator
+# Try to load Chinese backend (optional)
+try:
+    phonemizer_zh = EspeakBackend(
+        "cmn", preserve_punctuation=False, with_stress=False, language_switch="remove-flags"
+    )
+except RuntimeError:
+    warnings.warn("Chinese (cmn) language not supported by espeak - Chinese features will be disabled")
 
-phonemizer_ko = EspeakBackend(
-    "ko", preserve_punctuation=False, with_stress=False, language_switch="remove-flags"
-)
-# phonemizer_ko.separator = separator
+# Load English backend (required for Hinglish)
+try:
+    phonemizer_en = EspeakBackend(
+        "en-us",
+        preserve_punctuation=False,
+        with_stress=False,
+        language_switch="remove-flags",
+    )
+except RuntimeError:
+    warnings.warn("English (en-us) language not supported by espeak")
 
-phonemizer_fr = EspeakBackend(
-    "fr-fr",
-    preserve_punctuation=False,
-    with_stress=False,
-    language_switch="remove-flags",
-)
-# phonemizer_fr.separator = separator
+# Try to load Korean backend (optional)
+try:
+    phonemizer_ko = EspeakBackend(
+        "ko", preserve_punctuation=False, with_stress=False, language_switch="remove-flags"
+    )
+except RuntimeError:
+    warnings.warn("Korean language not supported by espeak - Korean features will be disabled")
 
-phonemizer_de = EspeakBackend(
-    "de", preserve_punctuation=False, with_stress=False, language_switch="remove-flags"
-)
-# phonemizer_de.separator = separator
+# Try to load French backend (optional)
+try:
+    phonemizer_fr = EspeakBackend(
+        "fr-fr",
+        preserve_punctuation=False,
+        with_stress=False,
+        language_switch="remove-flags",
+    )
+except RuntimeError:
+    warnings.warn("French language not supported by espeak - French features will be disabled")
+
+# Try to load German backend (optional)
+try:
+    phonemizer_de = EspeakBackend(
+        "de", preserve_punctuation=False, with_stress=False, language_switch="remove-flags"
+    )
+except RuntimeError:
+    warnings.warn("German language not supported by espeak - German features will be disabled")
 
 
 lang2backend = {
@@ -60,7 +83,15 @@ token = json.loads(json_data)
 
 
 def phonemizer_g2p(text, language):
-    langbackend = lang2backend[language]
+    langbackend = lang2backend.get(language)
+    
+    # Check if backend is available
+    if langbackend is None:
+        raise RuntimeError(
+            f"Language '{language}' is not supported. "
+            f"Please install the required espeak-ng language pack or use a supported language (English for Hinglish)."
+        )
+    
     phonemes = _phonemize(
         langbackend,
         text,
