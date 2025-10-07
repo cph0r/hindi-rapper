@@ -180,7 +180,7 @@ def generate_rap(lyrics, style_preset, custom_style, audio_length, use_custom_st
 # Create Gradio Interface
 def create_ui():
     with gr.Blocks(
-        title="Hindi Rap Generator 🎤",
+        title="Hinglish Rap Generator 🎤",
         theme=gr.themes.Soft(
             primary_hue="orange",
             secondary_hue="red",
@@ -188,12 +188,12 @@ def create_ui():
     ) as demo:
         
         gr.Markdown("""
-        # 🎤 Hindi Rap Generator (हिंदी रैप जनरेटर)
+        # 🎤 Hinglish Rap Generator (हिंग्लिश रैप जनरेटर)
         
-        Generate Hindi rap songs using AI! Powered by DiffRhythm 🔥
+        Generate Hinglish rap songs using AI! Mix Hindi + English for modern rap vibes 🔥
         
         ### How to use:
-        1. **Enter your lyrics** in LRC format (time-aligned)
+        1. **Enter your Hinglish lyrics** in LRC format (time-aligned)
         2. **Choose a rap style** preset or create your own
         3. **Set audio length** and hit Generate!
         4. **Download** your generated rap track
@@ -205,20 +205,20 @@ def create_ui():
             with gr.Column(scale=2):
                 # Lyrics Input
                 lyrics_input = gr.TextArea(
-                    label="📝 Hindi Lyrics (LRC Format)",
-                    placeholder="""[00:00.00]शुरू करते हैं ये कहानी
-[00:03.50]बोलते हैं हम हिंदी में
-[00:07.00]रैप का जलवा है सारी दुनिया में
-[00:10.50]यही है मेरी पहचान अब
+                    label="📝 Hinglish Lyrics (LRC Format)",
+                    placeholder="""[00:00.00]Let's start करते हैं ये journey यार
+[00:03.50]Hinglish में rap करूंगा main
+[00:07.00]Music का जलवा है worldwide में
+[00:10.50]This is my identity अब मेरी पहचान
 
 Example format:
-[MM:SS.MS]Your Hindi lyrics here
+[MM:SS.MS]Your Hinglish lyrics here (mix Hindi + English)
 """,
                     lines=10,
-                    value="""[00:00.00]यह है मेरा रैप गाना
-[00:03.50]हिंदी में बोलूंगा मैं
-[00:07.00]संगीत है मेरी जान
-[00:10.50]रैप का राजा हूं मैं""",
+                    value="""[00:00.00]This is my rap song यार
+[00:03.50]Hinglish में flow करूंगा main
+[00:07.00]Music है मेरी जान
+[00:10.50]Rap game का king हूं main""",
                 )
                 
                 # Style Selection
@@ -337,16 +337,21 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # Initialize models on startup
-    print("🎵 Hindi Rap Generator Starting...")
+    print("🎵 Hinglish Rap Generator Starting...")
     print("📦 Loading AI models (this may take a minute)...")
+    print("⏳ First-time setup will download ~3-5GB of models...")
+    print("")
+    
+    # Load models before creating UI
+    status = initialize_models(args.max_frames)
+    print(status)
+    print("")
     
     # Create UI
     demo = create_ui()
     
-    # Initialize models in background
-    demo.load(initialize_models, inputs=None, outputs=None)
-    
     # Launch
+    print("🚀 Launching web interface...")
     demo.launch(
         share=args.share,
         server_port=args.port,
