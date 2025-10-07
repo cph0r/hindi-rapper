@@ -10,7 +10,7 @@ pinned: false
 license: apache-2.0
 ---
 
-# 🎤 Hinglish Rap Generator (हिंग्लिश रैप जनरेटर)
+# 🎤 Hinglish Rap Generator
 
 Generate professional Hinglish rap songs using AI! Mix Hindi + English for modern rap vibes 🔥
 
@@ -27,10 +27,10 @@ Generate professional Hinglish rap songs using AI! Mix Hindi + English for moder
 ### Step 1: Write Your Hinglish Lyrics (LRC Format)
 
 ```
-[00:00.00]This is my rap song यार
-[00:03.50]Hinglish में flow करूंगा main
-[00:07.00]Music है मेरी जान
-[00:10.50]Rap game का king हूं main
+[00:00.00]This is my rap song yaar
+[00:03.50]Hinglish mein flow karunga main
+[00:07.00]Music hai meri jaan
+[00:10.50]Rap game ka king hoon main
 ```
 
 **Format**: `[MM:SS.MS]Your Hinglish lyrics here`
@@ -62,18 +62,18 @@ Click "Generate Hinglish Rap!" and wait 2-3 minutes for your track!
 
 **Motivational:**
 ```lrc
-[00:00.00]Wake up और चलो आगे बढ़ो
-[00:03.50]Chase your dreams अपने goals को पकड़ो
-[00:07.00]Every struggle को पार करो
-[00:10.50]Success का wait करो never give up यारो
+[00:00.00]Wake up aur chalo aage badho
+[00:03.50]Chase your dreams apne goals ko pakdo
+[00:07.00]Every struggle ko paar karo
+[00:10.50]Success ka wait karo never give up yaaro
 ```
 
 **Party Track:**
 ```lrc
-[00:00.00]Party शुरू करो right now यार
-[00:02.50]Dance करो साथ में all my people gather
-[00:05.00]All night long चलेगा ये show
-[00:07.50]Let's go crazy मजे करो यारों को
+[00:00.00]Party shuru karo right now yaar
+[00:02.50]Dance karo saath mein all my people gather
+[00:05.00]All night long chalega ye show
+[00:07.50]Let's go crazy maje karo yaaron ko
 ```
 
 ## 🔧 Technical Details

@@ -188,7 +188,7 @@ def create_ui():
     ) as demo:
         
         gr.Markdown("""
-        # 🎤 Hinglish Rap Generator (हिंग्लिश रैप जनरेटर)
+        # 🎤 Hinglish Rap Generator
         
         Generate Hinglish rap songs using AI! Mix Hindi + English for modern rap vibes 🔥
         
@@ -206,19 +206,19 @@ def create_ui():
                 # Lyrics Input
                 lyrics_input = gr.TextArea(
                     label="📝 Hinglish Lyrics (LRC Format)",
-                    placeholder="""[00:00.00]Let's start करते हैं ये journey यार
-[00:03.50]Hinglish में rap करूंगा main
-[00:07.00]Music का जलवा है worldwide में
-[00:10.50]This is my identity अब मेरी पहचान
+                    placeholder="""[00:00.00]Let's start karte hain ye journey yaar
+[00:03.50]Hinglish mein rap karunga main
+[00:07.00]Music ka jalwa hai worldwide mein
+[00:10.50]This is my identity ab meri pehchaan
 
 Example format:
 [MM:SS.MS]Your Hinglish lyrics here (mix Hindi + English)
 """,
                     lines=10,
-                    value="""[00:00.00]This is my rap song यार
-[00:03.50]Hinglish में flow करूंगा main
-[00:07.00]Music है मेरी जान
-[00:10.50]Rap game का king हूं main""",
+                    value="""[00:00.00]This is my rap song yaar
+[00:03.50]Hinglish mein flow karunga main
+[00:07.00]Music hai meri jaan
+[00:10.50]Rap game ka king hoon main""",
                 )
                 
                 # Style Selection
